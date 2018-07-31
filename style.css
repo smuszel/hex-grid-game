@@ -3,27 +3,72 @@ body {
     --hexagon: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
+* {
+    height: var(--height);
+    width: var(--width);
+}
+
 hex-grid {
     width: 1000px;
     height: 800px;
     background: #ded;
-    position: relative;
+    display: relative;
     contain: content;
 }
 
-hex-grid > 
-hex-tile {
+hex-grid > * {
     --x: 0;
     --y: 0;
-    --sign: 1;
-    
-    --topPos: calc(var(--y) * var(--hexSize) * 3 / 4);
-    --leftPos: calc(var(--hexSize) * var(--x) + var(--hexSize) * var(--sign) / 4 + var(--hexSize) *1/3.73);
-    clip-path: var(--hexagon);
+    --sign: 0;
+
+    --topAnchor: calc(var(--y) * 1.5px + var(--y) * var(--hexSize) * 3 / 4);
+    --leftAnchor: calc(var(--hexSize) * var(--x) + var(--hexSize) * var(--sign) / 4 + var(--hexSize) *1/3.73);
+
+    top: var(--topAnchor);
+    left: var(--leftAnchor);
+    position: absolute;
+}
+
+hex-tile {
     width: var(--hexSize);
     height: var(--hexSize);
-    top: var(--topPos);
-    left: var(--leftPos);
+}
+
+hex-tile > * {
+    position: inherit;
+    width: inherit;
+    height: inherit;
+}
+
+hex-tile-background {
+    clip-path: var(--hexagon);
     background-color: indigo;
-    position: absolute;
+}
+
+hex-tile-dropzone {
+    display: none;
+}
+
+hex-tile-border {
+    clip-path: var(--hexagon);
+    background-color: indigo;
+}
+
+unit-example {
+    --width: 23px;
+    --height: 50px;
+    background: #aba;
+}
+
+.centered {
+    /* --topCentering: calc(((var(--hexSize) - var(--height) / 2) / 2) * var(--isCentered) * 1px);
+    --leftCentering: calc(((var(--hexSize) - var(--width) / 2) / 2) * var(--isCentered) * 1px); */
+    --topCentering: calc(var(--hexSize) / 2);
+    --leftCentering: calc(var(--hexSize) / 2);
+
+    --widthOffset: calc(var(--width) / 2 );
+    --heightOffset: calc(var(--height) / 2 );
+
+    top: calc(var(--topAnchor) + var(--topCentering) - var(--heightOffset));
+    left: calc(var(--leftAnchor) + var(--leftCentering) - var(--widthOffset));
 }
