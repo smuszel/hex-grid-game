@@ -1,7 +1,50 @@
+const deselect = elem => {
+    if (elem) {
+        elem.state = { selected: false };
+    }
+}
+
+const select = elem => {
+    if (elem) {
+        elem.state = { selected: true };
+    }
+}
+
+class Store {
+    static get instance() {
+        if (!this._instance) {
+            this._instance = new Store();
+        }
+
+        return this._instance;
+    }
+
+    constructor() {
+        this.selected = undefined;
+    }
+}
+
+const requestSelection = element => {
+    const currentlySelected = Store.instance.selected;
+
+    if (currentlySelected === element) {
+        deselect(element);
+        Store.instance.selected = undefined;
+    } else if (currentlySelected) {
+        deselect(currentlySelected);
+        select(element)
+        Store.instance.selected = element;
+    } else {
+        select(element);
+        Store.instance.selected = element;
+    }
+}
+
 class HexTile extends HTMLElement {
     constructor() {
         super();
         this.attachShadow({ mode: 'open' });
+        this.selectable = true;
     }
 
     connectedCallback() {
@@ -12,6 +55,7 @@ class HexTile extends HTMLElement {
         `
 
         this.stylize(this.state);
+        this.addEventListener('click', () => requestSelection(this));
     }
     
     stylize(state) {
@@ -20,7 +64,8 @@ class HexTile extends HTMLElement {
             x,
             y,
             fill,
-            scale
+            scale,
+            selected
         } = state;
 
         const height = width * 2 / Math.sqrt(3);
@@ -39,13 +84,18 @@ class HexTile extends HTMLElement {
         const top = positionY - offsetY + borderY;
         const left = positionX + offsetX + paddingX + borderX;
 
+        const fill2 = selected
+            ? '#d3e'
+            : fill;
+            
+
         const style = {
             width: width + 'px',
             height: height + 'px',
             top: top + 'px',
             left: left + 'px',
             position: 'absolute',
-            fill: fill,
+            fill: fill2,
             transform: `scale(${scale})`
         }
 
