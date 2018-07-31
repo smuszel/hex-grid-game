@@ -65,7 +65,8 @@ class HexTile extends HTMLElement {
             y,
             fill,
             scale,
-            selected
+            selected,
+            inrange
         } = state;
 
         const height = width * 2 / Math.sqrt(3);
@@ -84,10 +85,15 @@ class HexTile extends HTMLElement {
         const top = positionY - offsetY + borderY;
         const left = positionX + offsetX + paddingX + borderX;
 
-        const fill2 = selected
-            ? '#d3e'
-            : fill;
-            
+        let fill2;
+        
+        if (selected) {
+            fill2 = '#d3e';
+        } else if (inrange) {
+            fill2 = '#12e';
+        } else {
+            fill2 = fill;
+        }
 
         const style = {
             width: width + 'px',
