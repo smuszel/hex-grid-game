@@ -1,5 +1,6 @@
 body {
-    --hexWidth: 80px;
+    --hexSize: 80px;
+    --hexagon: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
 }
 
 hex-grid {
@@ -11,21 +12,18 @@ hex-grid {
 }
 
 hex-grid > 
-hex-tile > 
-svg {
+hex-tile {
     --x: 0;
     --y: 0;
     --sign: 1;
-
-    --hexHeight: var(--hexWidth) * 1.15470053838;
-    --topPos: calc(var(--y) * var(--hexHeight) * 3 / 4);
-    --leftPos: calc(var(--hexWidth) * var(--x) + var(--hexWidth) * var(--sign) / 4 + var(--hexWidth) *1/3.73);
-
-
-    width: var(--hexWidth);
-    height: var(--hexHeight);
+    
+    --topPos: calc(var(--y) * var(--hexSize) * 3 / 4);
+    --leftPos: calc(var(--hexSize) * var(--x) + var(--hexSize) * var(--sign) / 4 + var(--hexSize) *1/3.73);
+    clip-path: var(--hexagon);
+    width: var(--hexSize);
+    height: var(--hexSize);
     top: var(--topPos);
     left: var(--leftPos);
-    fill: #5ce;
+    background-color: indigo;
     position: absolute;
 }
