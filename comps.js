@@ -43,109 +43,48 @@ const requestSelection = element => {
 class HexTile extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
         this.selectable = true;
     }
 
     connectedCallback() {
-        this.shadowRoot.innerHTML = `
+        this.innerHTML = `
             <svg viewbox="0 0 17.32050807568877 20">
                 <path d="M8.660254037844386 0L17.32050807568877 5L17.32050807568877 15L8.660254037844386 20L0 15L0 5Z"></path>
             </svg>
         `
 
-        this.stylize(this.state);
         this.addEventListener('click', () => requestSelection(this));
     }
-    
-    stylize(state) {
-        const {
-            width,
-            x,
-            y,
-            fill,
-            scale,
-            selected,
-            inrange
-        } = state;
 
-        const height = width * 2 / Math.sqrt(3);
-
-        const sign = z => z % 2 == 0 ? (-1) : 1;
-
-        const paddingX = width * 1 / 3.7;
-        const offsetX = width * 1 / 4 * sign(y);
-        const positionX = x * width;
-        const borderX = 0;
-
-        const positionY = y * height;
-        const offsetY = y * height * 1 / 4;
-        const borderY = 0;
-
-        const top = positionY - offsetY + borderY;
-        const left = positionX + offsetX + paddingX + borderX;
-
-        let fill2;
-        
-        if (selected) {
-            fill2 = '#d3e';
-        } else if (inrange) {
-            fill2 = '#12e';
-        } else {
-            fill2 = fill;
-        }
-
-        const style = {
-            width: width + 'px',
-            height: height + 'px',
-            top: top + 'px',
-            left: left + 'px',
-            position: 'absolute',
-            fill: fill2,
-            transform: `scale(${scale})`
-        }
-
-        const fst = this.shadowRoot.firstElementChild;
-        Object.entries(style).forEach(([k, v]) => fst.style.setProperty(k, v));
+    get x() {
+        return this._x;
     }
 
-    get state() {
-        return this._state;
+    set x(v) {
+        setTimeout(() => {
+            this.firstElementChild.style.setProperty('--x', v);
+            this._x = v;
+        }, 0);
     }
 
-    set state(x) {
-        this._state = { ...this._state, ...x };
+    get y() {
+        return this._y;
+    }
 
-        if (this.isConnected) {
-            this.stylize(this._state);
-        }
+    set y(v) {
+        const sgn = z => z % 2 == 0 ? 1 : (-1);
+
+        setTimeout(() => {
+            this.firstElementChild.style.setProperty('--y', v);
+            this.firstElementChild.style.setProperty('--sign', sgn(v));
+            this._y = v;
+        }, 0);
     }
 }
 
 class HexGrid extends HTMLElement {
     constructor() {
         super();
-        this.attachShadow({ mode: 'open' });
-    }
-
-    connectedCallback() {
-        this.stylize();
-
-        this.shadowRoot.innerHTML = `
-            <slot></slot>
-        `
-    }
-
-    stylize() {
-        const style = {
-            width: '1000px',
-            height: '800px',
-            background: '#ded',
-            position: 'relative',
-            contain: 'content'
-        }
-
-        Object.entries(style).forEach(([k, v]) => this.style.setProperty(k, v));
     }
 }
 

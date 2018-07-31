@@ -15,28 +15,16 @@ const permuteCoords = (x, y) => {
 const createHexTile = ([x, y]) => {
     const el = document.createElement('hex-tile');
 
-    el.state = {
-        x,
-        y,
-        fill: '#23e',
-        width: 80,
-        scale: 1
-    }
+    el.x = x;
+    el.y = y;
 
     return el;
 }
 
 const createHexUnit = ([x, y]) => {
     const el = document.createElement('hex-tile');
-
-    el.state = {
-        x,
-        y,
-        fill: '#ad6',
-        width: 80,
-        scale: 0.7
-    }
-    
+    el.x = x;
+    el.y = y;
     return el;
 }
 
