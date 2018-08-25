@@ -1,0 +1,10 @@
+unit-player {
+    --width: 30px;
+    --height: 30px;
+
+    width: var(--width);
+    height: var(--height);
+    border-radius: 100%;
+    z-index: 10;
+    background-color: rgb(214, 166, 103);
+}

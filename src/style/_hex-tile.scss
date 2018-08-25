@@ -1,0 +1,6 @@
+hex-tile {
+    width: var(--hexSize);
+    height: var(--hexSize);
+    clip-path: var(--hexagon);
+    background-color: rgb(71, 127, 212);
+}
