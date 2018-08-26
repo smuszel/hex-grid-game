@@ -3,3 +3,49 @@ body {
     --hexagon: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: 0.2s;
 }
+
+[x="0"] { --x: 0 }
+[x="1"] { --x: 1 }
+[x="2"] { --x: 2 }
+[x="3"] { --x: 3 }
+[x="4"] { --x: 4 }
+[x="5"] { --x: 5 }
+[x="6"] { --x: 6 }
+[x="7"] { --x: 7 }
+[x="8"] { --x: 8 }
+[x="9"] { --x: 9 }
+
+[y="0"] { --y: 0; --sign: 0 }
+[y="1"] { --y: 1; --sign: 1 }
+[y="2"] { --y: 2; --sign: 0 }
+[y="3"] { --y: 3; --sign: 1 }
+[y="4"] { --y: 4; --sign: 0 }
+[y="5"] { --y: 5; --sign: 1 }
+[y="6"] { --y: 6; --sign: 0 }
+[y="7"] { --y: 7; --sign: 1 }
+[y="8"] { --y: 8; --sign: 0 }
+[y="9"] { --y: 9; --sign: 1 }
+
+[sizex="0"] { --sizeX: 0 }
+[sizex="1"] { --sizeX: 1 }
+[sizex="2"] { --sizeX: 2 }
+[sizex="3"] { --sizeX: 3 }
+[sizex="4"] { --sizeX: 4 }
+[sizex="5"] { --sizeX: 5 }
+[sizex="6"] { --sizeX: 6 }
+[sizex="7"] { --sizeX: 7 }
+[sizex="8"] { --sizeX: 8 }
+[sizex="9"] { --sizeX: 9 }
+[sizex="10"] { --sizeX: 10 }
+
+[sizey="0"] { --sizeY: 0 }
+[sizey="1"] { --sizeY: 1 }
+[sizey="2"] { --sizeY: 2 }
+[sizey="3"] { --sizeY: 3 }
+[sizey="4"] { --sizeY: 4 }
+[sizey="5"] { --sizeY: 5 }
+[sizey="6"] { --sizeY: 6 }
+[sizey="7"] { --sizeY: 7 }
+[sizey="8"] { --sizeY: 8 }
+[sizey="9"] { --sizeY: 9 }
+[sizey="10"] { --sizeY: 10 }

@@ -19,7 +19,7 @@ hex-grid {
 
     display: inline-block;
     position: relative;
-    contain: size;
+    // contain: size;
 
     * {
         --x: 0;
@@ -51,10 +51,14 @@ hex-grid {
         --centeringLeft: calc((var(--hexSize) - var(--width)) / 2);
     }
 
-    .dragged {
-        --top: calc(var(--pageYDrag) - var(--centeringTop));
-        --left: calc(var(--pageXDrag) - var(--centeringLeft));
-        
-        background-color: #4e2;
+    .drag {
+        &-move {
+            --top: calc(var(--pageYDrag) - var(--centeringTop));
+            --left: calc(var(--pageXDrag) - var(--centeringLeft));
+        }
+
+        &-start {
+            background-color: rgb(224, 247, 19);
+        }
     }
 }

@@ -6,7 +6,7 @@
         "target": "es2018",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "lib": ["es2018", "dom"],
+        "lib": ["es2018", "dom", "es6", "esnext"],
         "sourceMap": false,
         "pretty": true,
         "outDir": "./dist",
