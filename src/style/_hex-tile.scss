@@ -3,4 +3,8 @@ hex-tile {
     height: var(--hexSize);
     clip-path: var(--hexagon);
     background-color: rgb(71, 127, 212);
+
+    &.in-range {
+        background-color: rgb(68, 69, 88);
+    }
 }

@@ -1,20 +1,7 @@
 import { permuteCoords } from '../tools/allTools';
-import { identityVoid } from '../tools/identity';
 import { childElements } from '../tools/childElements';
 import { isInHexRange } from '../tools/isInHexRange';
-
-class GridOccupantStub {
-    style = {
-        setProperty: identityVoid
-    };
-
-    classList = {
-        add: identityVoid,
-        remove: identityVoid
-    };
-
-    setAttribute = identityVoid
-}
+import { StepEvent } from '../meta/StepEvent';
 
 export default class HexGrid extends HTMLElement {
 
@@ -49,11 +36,7 @@ export default class HexGrid extends HTMLElement {
 
         const occupant = childElements(this.children).find(h);
 
-        if (occupant instanceof HTMLElement) {
-            return occupant
-        } else {
-            return new GridOccupantStub() as HTMLElement;
-        }
+        return occupant;
     }
 
     abortDrag = () => {
@@ -61,11 +44,13 @@ export default class HexGrid extends HTMLElement {
     }
 
     moveDraggedItem = (ev: MouseEvent) => {
-        this.draggedItem.classList.add('drag-move');
-        this.draggedItem.classList.remove('drag-start');
-
-        this.draggedItem.style.setProperty('--pageXDrag', `${ev.pageX}px`);
-        this.draggedItem.style.setProperty('--pageYDrag', `${ev.pageY}px`);
+        if (this.draggedItem) {
+            this.draggedItem.classList.add('drag-move');
+            this.draggedItem.classList.remove('drag-start');
+    
+            this.draggedItem.style.setProperty('--pageXDrag', `${ev.pageX}px`);
+            this.draggedItem.style.setProperty('--pageYDrag', `${ev.pageY}px`);
+        }
     }
 
     startDraggingItem = (ev: MouseEvent) => {
@@ -77,17 +62,29 @@ export default class HexGrid extends HTMLElement {
     releaseDraggedItem = (ev: MouseEvent) => {
         const [toX, toY] = this.pointerPositionToCoords(ev.clientX, ev.clientY);
 
-        if (toX && toY) {
+        if (toX && toY && this.draggedItem) {
             const rangeOfMovement = this.draggedItem.getAttribute('rom');
             const fromX = this.draggedItem.getAttribute('x');
             const fromY = this.draggedItem.getAttribute('y');
             const satisfiesRange = isInHexRange(fromX, fromY, toX, toY, rangeOfMovement);
 
             if (satisfiesRange) {
+                const stepee = this.queryIndex(toX, toY);
+
+                if (stepee instanceof HTMLElement) {
+                    const ev = new CustomEvent('eat', {
+                        detail: {
+                            stepee,
+                            steper: this.draggedItem
+                        }
+                    });
+
+                    this.dispatchEvent(ev);
+                }
+
                 this.draggedItem.setAttribute('x', toX);
                 this.draggedItem.setAttribute('y', toY);
             }
-
         }
 
         this.abortDrag();
@@ -118,22 +115,41 @@ export default class HexGrid extends HTMLElement {
     get draggedItem() {
         const el = this.querySelector('.drag');
 
-        if (el instanceof HTMLElement) {
-            return el;
-        } else {
-            return new GridOccupantStub() as HTMLElement;
-        }
+        return el as HTMLElement;
     }
 
     set draggedItem(v: HTMLElement) {
         const reference = this.draggedItem;
 
-        reference.style.setProperty('--pageXDrag', `${0}px`);
-        reference.style.setProperty('--pageYDrag', `${0}px`);
-        reference.classList.remove('drag-move', 'drag-start', 'drag');
+        if (reference) {
+            reference.style.setProperty('--pageXDrag', `${0}px`);
+            reference.style.setProperty('--pageYDrag', `${0}px`);
+            reference.classList.remove('drag-move', 'drag-start', 'drag');
+            this.tiles.forEach(t => t.classList.remove('in-range'));
+        }
 
         if (v) {
             v.classList.add('drag', 'drag-start');
+            const rangeOfMovement = v.getAttribute('rom');
+            const fromX = v.getAttribute('x');
+            const fromY = v.getAttribute('y');
+            const h = (toX, toY) => isInHexRange(fromX, fromY, toX, toY, rangeOfMovement);
+
+            this.tiles.forEach(t => {
+                const x = t.getAttribute('x');
+                const y = t.getAttribute('y');
+
+                if (h(x, y)) {
+                    t.classList.add('in-range')
+                }
+            })
         }
+    }
+
+    get tiles() {
+        const tiles = childElements(this.children)
+            .filter(el => el.tagName === 'HEX-TILE');
+
+        return tiles;
     }
 }

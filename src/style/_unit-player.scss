@@ -1,6 +1,10 @@
 unit-player {
-    --width: 30px;
-    --height: 30px;
+    --widthBase: 30px;
+    --heightBase: 30px;
+    --lifeGrow: 5px;
+
+    --width: calc(var(--widthBase) + var(--lifeGrow) * var(--life));
+    --height: calc(var(--heightBase) + var(--lifeGrow) * var(--life));
 
     width: var(--width);
     height: var(--height);
