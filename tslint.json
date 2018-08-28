@@ -19,7 +19,7 @@
         "no-return-await": true,
         "no-string-literal": true,
         "no-var-keyword": true,
-        "triple-equals": true,
+        "triple-equals": [true, "allow-null-check"],
         "switch-default": true,
         "indent": true,
         "max-line-length": [true, {

@@ -3,7 +3,9 @@ import HexGrid from 'components/hex-grid';
 import UnitEadible from 'components/unit-eadible';
 
 export const start = () => {
-    greet();
+    const experiment = exp();
+    console.log(experiment);
+
     cssPointerPosition();
 
     const hexGrid = document.querySelector('hex-grid') as HexGrid;
@@ -63,33 +65,52 @@ const cssPointerPosition = () => {
     // document.body.addEventListener('mouseleave', abort);
 }
 
-function* abc(a,b) {
-    const x = yield a.x
-    const y = yield b.y
+function decor(target, propName, descriptor) {
+    const original = descriptor.value
 
-    return x * y;
+    descriptor.value = function* (...args) {
+        console.log(args);
+        const res = original.apply(this, args);
+        console.log(res);
+
+        return res;
+    }
+
+    return descriptor;
 }
 
-const greet = () => {
-    const g = abc({x: 2}, {x: 20});
-    const state1 = g.next();
+class Test {
 
-    if (!state1.value) {
-        console.log('execution stopped');
+    @decor
+    *abc(a, b) {
+        const x = yield a.x
+        const y = yield b.y
 
-        return null;
-    } else {
-        const state2 = g.next(state1.value);
+        return x * y;
+    }
+}
 
-        if (!state2.value) {
-            console.log('execution stopped');
+// function* abc(a,b) {
+//     const x = yield a.x
+//     const y = yield b.y
 
+//     return x * y;
+// }
+
+const exp = () => {
+    const g = new Test().abc({ x: 2 }, { y: 20 });
+    
+    const f = (gen, val?) => {
+        const state = gen.next(val);
+
+        if (state.done) {
+            return state.value;
+        } else if (state.value == null) {
             return null
         } else {
-            const r = g.next(state2.value).value;
-            console.log('success', r);
-            
-            return r
+            return f(gen, state.value);
         }
     }
+
+    return f(g);
 }
