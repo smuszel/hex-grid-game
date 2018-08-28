@@ -1,13 +1,21 @@
+import { Collision } from 'meta/Collision';
+import { eventHandler } from '../decorators/eventHandler';
+
 export default class UnitEadible extends HTMLElement {
 
     constructor() {
         super();
     }
 
-    connectedCallback() {
-        this.classList.add('centered');
-        this.addEventListener('dragstart', ev => {
-            ev.preventDefault();
-        })
+    @eventHandler('dragstart')
+    dontFollowHorribleHTML5Spec(ev) {
+        ev.preventDefault();
+    }
+
+    @eventHandler('collision')
+    removeSelf(ev: Collision) {
+        if (ev.detail.receiver === this) {
+            this.parentElement.removeChild(this);
+        }
     }
 }

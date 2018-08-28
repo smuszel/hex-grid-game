@@ -19,7 +19,6 @@ hex-grid {
 
     display: inline-block;
     position: relative;
-    // contain: size;
 
     * {
         --x: 0;
@@ -38,23 +37,26 @@ hex-grid {
         --topBase: calc(var(--topAnchorBase) + var(--marginY) + var(--padding) / 2);
         --leftBase: calc(var(--leftAnchorBase) + var(--marginX) + var(--padding) / 2);
 
-        --top: calc(var(--topBase) + var(--centeringTop));
-        --left: calc(var(--leftBase) + var(--centeringLeft));
+        --centeringTop: calc((var(--hexSize) - var(--height)) / 2);
+        --centeringLeft: calc((var(--hexSize) - var(--width)) / 2);
+
+        --top: calc(var(--topBase) + var(--centeringTop, 0px));
+        --left: calc(var(--leftBase) + var(--centeringLeft, 0px));
     
         top: var(--top);
         left: var(--left);
         position: absolute;
     }
 
-    .centered {
-        --centeringTop: calc((var(--hexSize) - var(--height)) / 2);
-        --centeringLeft: calc((var(--hexSize) - var(--width)) / 2);
-    }
-
     .drag {
         &-move {
-            --top: calc(var(--pageYDrag) - var(--centeringTop));
-            --left: calc(var(--pageXDrag) - var(--centeringLeft));
+            // --top: calc(var(--pageYDrag) - var(--centeringTop));
+            // --left: calc(var(--pageXDrag) - var(--centeringLeft));
+            --dragOffsetTop: calc(var(--pageYDragOrigin) - var(--pageYDrag));
+            --dragOffsetLeft: calc(var(--pageXDragOrigin) - var(--pageXDrag));
+
+            --top: calc(var(--topBase) + var(--centeringTop, 0px) - var(--dragOffsetTop));
+            --left: calc(var(--leftBase) + var(--centeringLeft, 0px) - var(--dragOffsetLeft));
         }
 
         &-start {

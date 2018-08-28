@@ -1,19 +1,18 @@
+import { eventHandler } from '../decorators/eventHandler';
+
 export default class HexTile extends HTMLElement {
 
     constructor() {
         super();
     }
 
-    connectedCallback() {
-        this.addEventListener('click', () => console.log(
-            this.getAttribute('x'),
-            this.getAttribute('y')
-        ));
+    @eventHandler('dragstart')
+    dontFollowHorribleHTML5Spec(ev) {
+        ev.preventDefault();
+    }
 
-
-        // this.addEventListener('drag', console.log)
-        this.addEventListener('dragstart', ev => {
-            ev.preventDefault();
-        })
+    @eventHandler('click')
+    logCoords(ev) {
+        console.log(this.getAttribute('x'), this.getAttribute('y'));
     }
 }

@@ -1,49 +1,81 @@
 import { permuteCoords } from '../tools/allTools';
 import { childElements } from '../tools/childElements';
 import { isInHexRange } from '../tools/isInHexRange';
-import { StepEvent } from '../meta/StepEvent';
+import HexTile from './hex-tile';
+import { eventHandler } from '../decorators/eventHandler';
+import { childrenAttributeObserver } from '../decorators/childrenAttributeObserver';
+import { HTMLElementPlus } from '../meta/HTMLElementPlus';
 
-export default class HexGrid extends HTMLElement {
+export default class HexGrid extends HTMLElementPlus {
 
     constructor() {
         super();
-    }
-
-    connectedCallback() {
-        this.addEventListener('mouseup', this.releaseDraggedItem);
-        this.addEventListener('mousedown', this.startDraggingItem);
-        this.addEventListener('mousemove', this.moveDraggedItem);
-        this.addEventListener('mouseleave', this.abortDrag);
-
-        this.render();
     }
 
     render() {
         const tile = ([x, y]) => `<hex-tile x=${x} y=${y}></hex-tile>`;
         const z = permuteCoords(this.getAttribute('sizex'), this.getAttribute('sizey')).map(tile);
         
-        this.innerHTML = z.join('')
+        return z.join('');
     }
 
-    queryIndex(x, y) {
+    queryIndexExh(x, y) {
         const h = (occupant: HTMLElement) => {
             const xMatch = occupant.getAttribute('x') === x;
             const yMatch = occupant.getAttribute('y') === y;
-            const notTile = occupant.tagName !== 'HEX-TILE';
+            const notTile = !(occupant instanceof HexTile);
 
             return xMatch && yMatch && notTile;
         };
 
-        const occupant = childElements(this.children).find(h);
+        const occupants = childElements(this.children).filter(h);
 
-        return occupant;
+        return occupants;
+    }
+
+    queryIndex(x, y) {
+        return this.queryIndexExh(x,y)[0];
+    }
+
+    @eventHandler('dragstart')
+    dontFollowHorribleHTML5Spec(ev) {
+        ev.preventDefault();
+    }
+
+    @childrenAttributeObserver('x', 'y')
+    collisionCheck(mut: MutationRecord[]) {
+        const observedTarget = mut[0].target;
+        console.log(mut);
+
+        if (observedTarget instanceof HTMLElement) {
+            const x = observedTarget.getAttribute('x');
+            const y = observedTarget.getAttribute('y');
+
+            const occupants = this.queryIndexExh(x, y);
+
+            if (occupants.length > 1) {
+                const otherOccupants = occupants.filter(x => x !== observedTarget);
+                const issuer = observedTarget;
+                const receiver = otherOccupants[0];
+
+                const childrenCollision= new CustomEvent('collision', {
+                    bubbles: false,
+                    detail: { receiver, issuer }
+                });
+
+                issuer.dispatchEvent(childrenCollision);
+                receiver.dispatchEvent(childrenCollision);
+                this.dispatchEvent(childrenCollision)
+            }
+        }
     }
 
     abortDrag = () => {
         this.draggedItem = null;
     }
 
-    moveDraggedItem = (ev: MouseEvent) => {
+    @eventHandler('mousemove')
+    moveDraggedItem(ev: MouseEvent) {
         if (this.draggedItem) {
             this.draggedItem.classList.add('drag-move');
             this.draggedItem.classList.remove('drag-start');
@@ -53,13 +85,20 @@ export default class HexGrid extends HTMLElement {
         }
     }
 
-    startDraggingItem = (ev: MouseEvent) => {
+    @eventHandler('mousedown')
+    startDraggingItem(ev: MouseEvent) {
         const el = this.occupantFromPointerPosition(ev.clientX, ev.clientY);
 
-        this.draggedItem = el;
+        if (el) {
+            el.style.setProperty('--pageXDragOrigin', `${ev.pageX}px`);
+            el.style.setProperty('--pageYDragOrigin', `${ev.pageY}px`);
+    
+            this.draggedItem = el;
+        }
     }
 
-    releaseDraggedItem = (ev: MouseEvent) => {
+    @eventHandler('mouseup')
+    releaseDraggedItem(ev: MouseEvent) {
         const [toX, toY] = this.pointerPositionToCoords(ev.clientX, ev.clientY);
 
         if (toX && toY && this.draggedItem) {
@@ -69,18 +108,6 @@ export default class HexGrid extends HTMLElement {
             const satisfiesRange = isInHexRange(fromX, fromY, toX, toY, rangeOfMovement);
 
             if (satisfiesRange) {
-                const stepee = this.queryIndex(toX, toY);
-
-                if (stepee instanceof HTMLElement) {
-                    const ev = new CustomEvent('eat', {
-                        detail: {
-                            stepee,
-                            steper: this.draggedItem
-                        }
-                    });
-
-                    this.dispatchEvent(ev);
-                }
 
                 this.draggedItem.setAttribute('x', toX);
                 this.draggedItem.setAttribute('y', toY);
@@ -99,7 +126,7 @@ export default class HexGrid extends HTMLElement {
 
     pointerPositionToCoords(pointerX, pointerY) {
         const elements = document.elementsFromPoint(pointerX, pointerY);
-        const tile = elements.find(el => el.tagName === 'HEX-TILE');
+        const tile = elements.find(el => el instanceof HexTile);
 
         if (tile) {
             const x = tile.getAttribute('x');
@@ -124,6 +151,8 @@ export default class HexGrid extends HTMLElement {
         if (reference) {
             reference.style.setProperty('--pageXDrag', `${0}px`);
             reference.style.setProperty('--pageYDrag', `${0}px`);
+            this.draggedItem.style.setProperty('--pageXDragOrigin', `${0}px`);
+            this.draggedItem.style.setProperty('--pageYDragOrigin', `${0}px`);
             reference.classList.remove('drag-move', 'drag-start', 'drag');
             this.tiles.forEach(t => t.classList.remove('in-range'));
         }
@@ -140,7 +169,7 @@ export default class HexGrid extends HTMLElement {
                 const y = t.getAttribute('y');
 
                 if (h(x, y)) {
-                    t.classList.add('in-range')
+                    t.classList.add('in-range');
                 }
             })
         }
@@ -148,7 +177,7 @@ export default class HexGrid extends HTMLElement {
 
     get tiles() {
         const tiles = childElements(this.children)
-            .filter(el => el.tagName === 'HEX-TILE');
+            .filter(el => el instanceof HexTile);
 
         return tiles;
     }

@@ -3,6 +3,9 @@ import HexGrid from 'components/hex-grid';
 import UnitEadible from 'components/unit-eadible';
 
 export const start = () => {
+    greet();
+    cssPointerPosition();
+
     const hexGrid = document.querySelector('hex-grid') as HexGrid;
     const player = document.createElement('unit-player') as UnitPlayer;
 
@@ -29,17 +32,37 @@ export const start = () => {
     hexGrid.appendChild(e1);
     hexGrid.appendChild(e2);
     hexGrid.appendChild(e3);
+}
 
-    let opt: MutationObserverInit
+const cssPointerPosition = () => {
 
-    opt = {
-        // childList: true,
-        subtree: true,
-        attributes: true,
-        attributeFilter: ['x', 'y']
-    };
+    // const moveHandler = ev => {
+    //     console.log('aa');
+    //     document.body.style.setProperty('--mouseX', `${ev.pageX}px`);
+    //     document.body.style.setProperty('--mouseY', `${ev.pageY}px`);
+    // }
 
-    const ob = new MutationObserver(console.log);
-    ob.observe(document.querySelector('hex-grid'), opt);
-    console.log(ob);
+    // const upHandler = ev => {
+    //     document.body.style.setProperty('--mouseX', `${ev.pageX}px`);
+    //     document.body.style.setProperty('--mouseY', `${ev.pageY}px`);
+    //     abort()
+    // }
+    
+    // const downHandler = ev => {
+    //     document.body.style.setProperty('--mouseX', `${ev.pageX}px`);
+    //     document.body.style.setProperty('--mouseY', `${ev.pageY}px`);
+    //     document.body.addEventListener('mousemove', moveHandler);
+    // }
+    
+    // const abort = () => {
+    //     document.body.removeEventListener('mousemove', moveHandler);
+    // }
+
+    // document.body.addEventListener('mousedown', downHandler);
+    // document.body.addEventListener('mouseup', upHandler);
+    // document.body.addEventListener('mouseleave', abort);
+}
+
+const greet = () => {
+    // console.log('hello');
 }
