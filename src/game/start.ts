@@ -63,6 +63,33 @@ const cssPointerPosition = () => {
     // document.body.addEventListener('mouseleave', abort);
 }
 
+function* abc(a,b) {
+    const x = yield a.x
+    const y = yield b.y
+
+    return x * y;
+}
+
 const greet = () => {
-    // console.log('hello');
+    const g = abc({x: 2}, {x: 20});
+    const state1 = g.next();
+
+    if (!state1.value) {
+        console.log('execution stopped');
+
+        return null;
+    } else {
+        const state2 = g.next(state1.value);
+
+        if (!state2.value) {
+            console.log('execution stopped');
+
+            return null
+        } else {
+            const r = g.next(state2.value).value;
+            console.log('success', r);
+            
+            return r
+        }
+    }
 }
