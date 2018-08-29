@@ -12,7 +12,7 @@ export class HTMLElementPlus extends HTMLElement {
         }
 
         if (self.render instanceof Function) {
-            self.innerHTML = self.render();
+            self.innerHTML += self.render();
         }
     }
 }

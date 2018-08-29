@@ -1,10 +1,13 @@
-import { permuteCoords } from '../tools/allTools';
+import { permuteCoords } from '../tools/misc';
 import { childElements } from '../tools/childElements';
-import { isInHexRange } from '../tools/isInHexRange';
+import { isInRange } from '../tools/isInRange';
 import HexTile from './hex-tile';
 import { eventHandler } from '../decorators/eventHandler';
 import { childrenAttributeObserver } from '../decorators/childrenAttributeObserver';
 import { HTMLElementPlus } from '../meta/HTMLElementPlus';
+import { locate } from '../tools/locate';
+import { move } from '../tools/move';
+import UnitEdible from './unit-edible';
 
 export default class HexGrid extends HTMLElementPlus {
 
@@ -19,11 +22,11 @@ export default class HexGrid extends HTMLElementPlus {
         return z.join('');
     }
 
-    queryIndexExh(x, y) {
-        const h = (occupant: HTMLElement) => {
-            const xMatch = occupant.getAttribute('x') === x;
-            const yMatch = occupant.getAttribute('y') === y;
-            const notTile = !(occupant instanceof HexTile);
+    queryIndexExh([x, y]) {
+        const h = (el: HTMLElement) => {
+            const xMatch = el.getAttribute('x') === `${x}`;
+            const yMatch = el.getAttribute('y') === `${y}`;
+            const notTile = !(el instanceof HexTile);
 
             return xMatch && yMatch && notTile;
         };
@@ -33,8 +36,14 @@ export default class HexGrid extends HTMLElementPlus {
         return occupants;
     }
 
-    queryIndex(x, y) {
-        return this.queryIndexExh(x,y)[0];
+    queryIndex([x, y]) {
+        return this.queryIndexExh([x, y])[0];
+    }
+
+    abortDrag = () => {
+        if (this.draggedItem) {
+            this.draggedItem = null;
+        }
     }
 
     @eventHandler('dragstart')
@@ -43,35 +52,36 @@ export default class HexGrid extends HTMLElementPlus {
     }
 
     @childrenAttributeObserver('x', 'y')
-    collisionCheck(mut: MutationRecord[]) {
+    handleMovement(mut: MutationRecord[]) {
         const observedTarget = mut[0].target;
-        console.log(mut);
 
         if (observedTarget instanceof HTMLElement) {
-            const x = observedTarget.getAttribute('x');
-            const y = observedTarget.getAttribute('y');
+            this.fireMovementEvent();
+            ///
+            const coordinates = locate(observedTarget);
+            const elementAtSameTile = this.queryIndexExh(coordinates)
+                .filter(el => el !== observedTarget)[0];
 
-            const occupants = this.queryIndexExh(x, y);
-
-            if (occupants.length > 1) {
-                const otherOccupants = occupants.filter(x => x !== observedTarget);
-                const issuer = observedTarget;
-                const receiver = otherOccupants[0];
-
-                const childrenCollision= new CustomEvent('collision', {
-                    bubbles: false,
-                    detail: { receiver, issuer }
-                });
-
-                issuer.dispatchEvent(childrenCollision);
-                receiver.dispatchEvent(childrenCollision);
-                this.dispatchEvent(childrenCollision)
+            if (elementAtSameTile) {
+                this.fireCollisionEvent(observedTarget, elementAtSameTile);
             }
         }
     }
 
-    abortDrag = () => {
-        this.draggedItem = null;
+    fireMovementEvent() {
+        const movement = new CustomEvent('movement');
+        this.dispatchEvent(movement);
+    }
+    
+    fireCollisionEvent(issuer, receiver) {
+        const childrenCollision = new CustomEvent('collision', {
+            bubbles: false,
+            detail: { receiver, issuer }
+        });
+
+        issuer.dispatchEvent(childrenCollision);
+        receiver.dispatchEvent(childrenCollision);
+        this.dispatchEvent(childrenCollision);
     }
 
     @eventHandler('mousemove')
@@ -87,7 +97,8 @@ export default class HexGrid extends HTMLElementPlus {
 
     @eventHandler('mousedown')
     startDraggingItem(ev: MouseEvent) {
-        const el = this.occupantFromPointerPosition(ev.clientX, ev.clientY);
+        const coordinates = this.pointerPositionToCoords(ev.clientX, ev.clientY);
+        const el = this.queryIndex(coordinates);
 
         if (el) {
             el.style.setProperty('--pageXDragOrigin', `${ev.pageX}px`);
@@ -99,42 +110,29 @@ export default class HexGrid extends HTMLElementPlus {
 
     @eventHandler('mouseup')
     releaseDraggedItem(ev: MouseEvent) {
-        const [toX, toY] = this.pointerPositionToCoords(ev.clientX, ev.clientY);
+        const to = this.pointerPositionToCoords(ev.clientX, ev.clientY);
 
-        if (toX && toY && this.draggedItem) {
-            const rangeOfMovement = this.draggedItem.getAttribute('rom');
-            const fromX = this.draggedItem.getAttribute('x');
-            const fromY = this.draggedItem.getAttribute('y');
-            const satisfiesRange = isInHexRange(fromX, fromY, toX, toY, rangeOfMovement);
+        if (to[0] != null && this.draggedItem) {
+            const rangeOfMovement = parseInt(this.draggedItem.getAttribute('rom'));
+            const from = locate(this.draggedItem);
+            const satisfiesRange = isInRange(from, to, rangeOfMovement);
 
             if (satisfiesRange) {
-
-                this.draggedItem.setAttribute('x', toX);
-                this.draggedItem.setAttribute('y', toY);
+                move(this.draggedItem, to);
             }
         }
 
         this.abortDrag();
     }
 
-    occupantFromPointerPosition(pointerX, pointerY) {
-        const [x, y] = this.pointerPositionToCoords(pointerX, pointerY);
-        const el = this.queryIndex(x, y);
-
-        return el;
-    }
-
     pointerPositionToCoords(pointerX, pointerY) {
         const elements = document.elementsFromPoint(pointerX, pointerY);
         const tile = elements.find(el => el instanceof HexTile);
 
-        if (tile) {
-            const x = tile.getAttribute('x');
-            const y = tile.getAttribute('y');
-
-            return [x, y];
+        if (tile instanceof HexTile) {
+            return locate(tile);
         } else {
-            return [null, null];
+            return [null, null] as OffsetCoordinates;
         }
     }
 
@@ -145,7 +143,7 @@ export default class HexGrid extends HTMLElementPlus {
         return el as HTMLElement;
     }
 
-    set draggedItem(v: HTMLElement) {
+    set draggedItem(candidate: HTMLElement) {
         const reference = this.draggedItem;
 
         if (reference) {
@@ -154,22 +152,19 @@ export default class HexGrid extends HTMLElementPlus {
             this.draggedItem.style.setProperty('--pageXDragOrigin', `${0}px`);
             this.draggedItem.style.setProperty('--pageYDragOrigin', `${0}px`);
             reference.classList.remove('drag-move', 'drag-start', 'drag');
-            this.tiles.forEach(t => t.classList.remove('in-range'));
+            this.tiles.forEach(tile => tile.classList.remove('in-range'));
         }
 
-        if (v) {
-            v.classList.add('drag', 'drag-start');
-            const rangeOfMovement = v.getAttribute('rom');
-            const fromX = v.getAttribute('x');
-            const fromY = v.getAttribute('y');
-            const h = (toX, toY) => isInHexRange(fromX, fromY, toX, toY, rangeOfMovement);
+        if (candidate) {
+            candidate.classList.add('drag', 'drag-start');
 
-            this.tiles.forEach(t => {
-                const x = t.getAttribute('x');
-                const y = t.getAttribute('y');
+            const rangeOfMovement = parseInt(candidate.getAttribute('rom'));
+            const from = locate(candidate);
+            const h = to => isInRange(from, to, rangeOfMovement);
 
-                if (h(x, y)) {
-                    t.classList.add('in-range');
+            this.tiles.forEach(tile => {
+                if (h(locate(tile))) {
+                    tile.classList.add('in-range');
                 }
             })
         }
@@ -180,5 +175,37 @@ export default class HexGrid extends HTMLElementPlus {
             .filter(el => el instanceof HexTile);
 
         return tiles;
+    }
+
+    get randomVacantCoords(): OffsetCoordinates {
+        const gen = () => ['sizex', 'sizey']
+            .map(n => this.getAttribute(n))
+            .map(a => parseInt(a))
+            .map(b => Math.random() * b)
+            .map(c => Math.floor(c))
+            ;
+        
+        const cs = gen() as OffsetCoordinates;
+        const occupied = !!this.queryIndex(cs);
+
+        if (occupied) {
+            return this.randomVacantCoords;
+        } else {
+            return cs;
+        }
+    }
+
+    get ediblesCount() {
+        return childElements(this.children)
+            .filter(x => x instanceof UnitEdible)
+            .length
+    }
+
+    get totalSize() {
+        return ['sizex', 'sizey']
+            .map(n => this.getAttribute(n))
+            .map(a => parseInt(a))
+            .reduce((a, x) => a * x, 1)
+            ;
     }
 }

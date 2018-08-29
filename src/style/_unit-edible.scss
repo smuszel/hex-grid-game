@@ -1,6 +1,8 @@
-unit-eadible {
+unit-edible {
     --width: 30px;
     --height: 30px;
+    
+    top: --height;
     
     width: var(--width);
     height: var(--height);
