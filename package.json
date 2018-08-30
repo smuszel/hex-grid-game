@@ -19,6 +19,7 @@
     },
     "dependencies": {},
     "scripts": {
-        "start": "npx webpack -w"
+        "start": "npx webpack -w",
+        "publish": "npx webpack --mode=production && cp -rf dist/* docs/"
     }
 }
