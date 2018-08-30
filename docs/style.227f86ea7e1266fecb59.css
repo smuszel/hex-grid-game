@@ -1,0 +1,1799 @@
+body {
+  --hexSize: 80px;
+  --hexagon: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: 0.2s;
+  margin: 0; }
+
+[x="0"] {
+  --x: 0; }
+
+[sizex="0"] {
+  --sizeX: 0; }
+
+[sizey="0"] {
+  --sizeY: 0; }
+
+[life="0"] {
+  --life: 0; }
+
+[y="0"] {
+  --y: 0;
+  --sign: 0;
+  --sign: 0; }
+
+[x="1"] {
+  --x: 1; }
+
+[sizex="1"] {
+  --sizeX: 1; }
+
+[sizey="1"] {
+  --sizeY: 1; }
+
+[life="1"] {
+  --life: 1; }
+
+[y="1"] {
+  --y: 1;
+  --sign: 0;
+  --sign: 1; }
+
+[x="2"] {
+  --x: 2; }
+
+[sizex="2"] {
+  --sizeX: 2; }
+
+[sizey="2"] {
+  --sizeY: 2; }
+
+[life="2"] {
+  --life: 2; }
+
+[y="2"] {
+  --y: 2;
+  --sign: 0;
+  --sign: 0; }
+
+[x="3"] {
+  --x: 3; }
+
+[sizex="3"] {
+  --sizeX: 3; }
+
+[sizey="3"] {
+  --sizeY: 3; }
+
+[life="3"] {
+  --life: 3; }
+
+[y="3"] {
+  --y: 3;
+  --sign: 0;
+  --sign: 1; }
+
+[x="4"] {
+  --x: 4; }
+
+[sizex="4"] {
+  --sizeX: 4; }
+
+[sizey="4"] {
+  --sizeY: 4; }
+
+[life="4"] {
+  --life: 4; }
+
+[y="4"] {
+  --y: 4;
+  --sign: 0;
+  --sign: 0; }
+
+[x="5"] {
+  --x: 5; }
+
+[sizex="5"] {
+  --sizeX: 5; }
+
+[sizey="5"] {
+  --sizeY: 5; }
+
+[life="5"] {
+  --life: 5; }
+
+[y="5"] {
+  --y: 5;
+  --sign: 0;
+  --sign: 1; }
+
+[x="6"] {
+  --x: 6; }
+
+[sizex="6"] {
+  --sizeX: 6; }
+
+[sizey="6"] {
+  --sizeY: 6; }
+
+[life="6"] {
+  --life: 6; }
+
+[y="6"] {
+  --y: 6;
+  --sign: 0;
+  --sign: 0; }
+
+[x="7"] {
+  --x: 7; }
+
+[sizex="7"] {
+  --sizeX: 7; }
+
+[sizey="7"] {
+  --sizeY: 7; }
+
+[life="7"] {
+  --life: 7; }
+
+[y="7"] {
+  --y: 7;
+  --sign: 0;
+  --sign: 1; }
+
+[x="8"] {
+  --x: 8; }
+
+[sizex="8"] {
+  --sizeX: 8; }
+
+[sizey="8"] {
+  --sizeY: 8; }
+
+[life="8"] {
+  --life: 8; }
+
+[y="8"] {
+  --y: 8;
+  --sign: 0;
+  --sign: 0; }
+
+[x="9"] {
+  --x: 9; }
+
+[sizex="9"] {
+  --sizeX: 9; }
+
+[sizey="9"] {
+  --sizeY: 9; }
+
+[life="9"] {
+  --life: 9; }
+
+[y="9"] {
+  --y: 9;
+  --sign: 0;
+  --sign: 1; }
+
+[x="10"] {
+  --x: 10; }
+
+[sizex="10"] {
+  --sizeX: 10; }
+
+[sizey="10"] {
+  --sizeY: 10; }
+
+[life="10"] {
+  --life: 10; }
+
+[y="10"] {
+  --y: 10;
+  --sign: 0;
+  --sign: 0; }
+
+[x="11"] {
+  --x: 11; }
+
+[sizex="11"] {
+  --sizeX: 11; }
+
+[sizey="11"] {
+  --sizeY: 11; }
+
+[life="11"] {
+  --life: 11; }
+
+[y="11"] {
+  --y: 11;
+  --sign: 0;
+  --sign: 1; }
+
+[x="12"] {
+  --x: 12; }
+
+[sizex="12"] {
+  --sizeX: 12; }
+
+[sizey="12"] {
+  --sizeY: 12; }
+
+[life="12"] {
+  --life: 12; }
+
+[y="12"] {
+  --y: 12;
+  --sign: 0;
+  --sign: 0; }
+
+[x="13"] {
+  --x: 13; }
+
+[sizex="13"] {
+  --sizeX: 13; }
+
+[sizey="13"] {
+  --sizeY: 13; }
+
+[life="13"] {
+  --life: 13; }
+
+[y="13"] {
+  --y: 13;
+  --sign: 0;
+  --sign: 1; }
+
+[x="14"] {
+  --x: 14; }
+
+[sizex="14"] {
+  --sizeX: 14; }
+
+[sizey="14"] {
+  --sizeY: 14; }
+
+[life="14"] {
+  --life: 14; }
+
+[y="14"] {
+  --y: 14;
+  --sign: 0;
+  --sign: 0; }
+
+[x="15"] {
+  --x: 15; }
+
+[sizex="15"] {
+  --sizeX: 15; }
+
+[sizey="15"] {
+  --sizeY: 15; }
+
+[life="15"] {
+  --life: 15; }
+
+[y="15"] {
+  --y: 15;
+  --sign: 0;
+  --sign: 1; }
+
+[x="16"] {
+  --x: 16; }
+
+[sizex="16"] {
+  --sizeX: 16; }
+
+[sizey="16"] {
+  --sizeY: 16; }
+
+[life="16"] {
+  --life: 16; }
+
+[y="16"] {
+  --y: 16;
+  --sign: 0;
+  --sign: 0; }
+
+[x="17"] {
+  --x: 17; }
+
+[sizex="17"] {
+  --sizeX: 17; }
+
+[sizey="17"] {
+  --sizeY: 17; }
+
+[life="17"] {
+  --life: 17; }
+
+[y="17"] {
+  --y: 17;
+  --sign: 0;
+  --sign: 1; }
+
+[x="18"] {
+  --x: 18; }
+
+[sizex="18"] {
+  --sizeX: 18; }
+
+[sizey="18"] {
+  --sizeY: 18; }
+
+[life="18"] {
+  --life: 18; }
+
+[y="18"] {
+  --y: 18;
+  --sign: 0;
+  --sign: 0; }
+
+[x="19"] {
+  --x: 19; }
+
+[sizex="19"] {
+  --sizeX: 19; }
+
+[sizey="19"] {
+  --sizeY: 19; }
+
+[life="19"] {
+  --life: 19; }
+
+[y="19"] {
+  --y: 19;
+  --sign: 0;
+  --sign: 1; }
+
+[x="20"] {
+  --x: 20; }
+
+[sizex="20"] {
+  --sizeX: 20; }
+
+[sizey="20"] {
+  --sizeY: 20; }
+
+[life="20"] {
+  --life: 20; }
+
+[y="20"] {
+  --y: 20;
+  --sign: 0;
+  --sign: 0; }
+
+[x="21"] {
+  --x: 21; }
+
+[sizex="21"] {
+  --sizeX: 21; }
+
+[sizey="21"] {
+  --sizeY: 21; }
+
+[life="21"] {
+  --life: 21; }
+
+[y="21"] {
+  --y: 21;
+  --sign: 0;
+  --sign: 1; }
+
+[x="22"] {
+  --x: 22; }
+
+[sizex="22"] {
+  --sizeX: 22; }
+
+[sizey="22"] {
+  --sizeY: 22; }
+
+[life="22"] {
+  --life: 22; }
+
+[y="22"] {
+  --y: 22;
+  --sign: 0;
+  --sign: 0; }
+
+[x="23"] {
+  --x: 23; }
+
+[sizex="23"] {
+  --sizeX: 23; }
+
+[sizey="23"] {
+  --sizeY: 23; }
+
+[life="23"] {
+  --life: 23; }
+
+[y="23"] {
+  --y: 23;
+  --sign: 0;
+  --sign: 1; }
+
+[x="24"] {
+  --x: 24; }
+
+[sizex="24"] {
+  --sizeX: 24; }
+
+[sizey="24"] {
+  --sizeY: 24; }
+
+[life="24"] {
+  --life: 24; }
+
+[y="24"] {
+  --y: 24;
+  --sign: 0;
+  --sign: 0; }
+
+[x="25"] {
+  --x: 25; }
+
+[sizex="25"] {
+  --sizeX: 25; }
+
+[sizey="25"] {
+  --sizeY: 25; }
+
+[life="25"] {
+  --life: 25; }
+
+[y="25"] {
+  --y: 25;
+  --sign: 0;
+  --sign: 1; }
+
+[x="26"] {
+  --x: 26; }
+
+[sizex="26"] {
+  --sizeX: 26; }
+
+[sizey="26"] {
+  --sizeY: 26; }
+
+[life="26"] {
+  --life: 26; }
+
+[y="26"] {
+  --y: 26;
+  --sign: 0;
+  --sign: 0; }
+
+[x="27"] {
+  --x: 27; }
+
+[sizex="27"] {
+  --sizeX: 27; }
+
+[sizey="27"] {
+  --sizeY: 27; }
+
+[life="27"] {
+  --life: 27; }
+
+[y="27"] {
+  --y: 27;
+  --sign: 0;
+  --sign: 1; }
+
+[x="28"] {
+  --x: 28; }
+
+[sizex="28"] {
+  --sizeX: 28; }
+
+[sizey="28"] {
+  --sizeY: 28; }
+
+[life="28"] {
+  --life: 28; }
+
+[y="28"] {
+  --y: 28;
+  --sign: 0;
+  --sign: 0; }
+
+[x="29"] {
+  --x: 29; }
+
+[sizex="29"] {
+  --sizeX: 29; }
+
+[sizey="29"] {
+  --sizeY: 29; }
+
+[life="29"] {
+  --life: 29; }
+
+[y="29"] {
+  --y: 29;
+  --sign: 0;
+  --sign: 1; }
+
+[x="30"] {
+  --x: 30; }
+
+[sizex="30"] {
+  --sizeX: 30; }
+
+[sizey="30"] {
+  --sizeY: 30; }
+
+[life="30"] {
+  --life: 30; }
+
+[y="30"] {
+  --y: 30;
+  --sign: 0;
+  --sign: 0; }
+
+[x="31"] {
+  --x: 31; }
+
+[sizex="31"] {
+  --sizeX: 31; }
+
+[sizey="31"] {
+  --sizeY: 31; }
+
+[life="31"] {
+  --life: 31; }
+
+[y="31"] {
+  --y: 31;
+  --sign: 0;
+  --sign: 1; }
+
+[x="32"] {
+  --x: 32; }
+
+[sizex="32"] {
+  --sizeX: 32; }
+
+[sizey="32"] {
+  --sizeY: 32; }
+
+[life="32"] {
+  --life: 32; }
+
+[y="32"] {
+  --y: 32;
+  --sign: 0;
+  --sign: 0; }
+
+[x="33"] {
+  --x: 33; }
+
+[sizex="33"] {
+  --sizeX: 33; }
+
+[sizey="33"] {
+  --sizeY: 33; }
+
+[life="33"] {
+  --life: 33; }
+
+[y="33"] {
+  --y: 33;
+  --sign: 0;
+  --sign: 1; }
+
+[x="34"] {
+  --x: 34; }
+
+[sizex="34"] {
+  --sizeX: 34; }
+
+[sizey="34"] {
+  --sizeY: 34; }
+
+[life="34"] {
+  --life: 34; }
+
+[y="34"] {
+  --y: 34;
+  --sign: 0;
+  --sign: 0; }
+
+[x="35"] {
+  --x: 35; }
+
+[sizex="35"] {
+  --sizeX: 35; }
+
+[sizey="35"] {
+  --sizeY: 35; }
+
+[life="35"] {
+  --life: 35; }
+
+[y="35"] {
+  --y: 35;
+  --sign: 0;
+  --sign: 1; }
+
+[x="36"] {
+  --x: 36; }
+
+[sizex="36"] {
+  --sizeX: 36; }
+
+[sizey="36"] {
+  --sizeY: 36; }
+
+[life="36"] {
+  --life: 36; }
+
+[y="36"] {
+  --y: 36;
+  --sign: 0;
+  --sign: 0; }
+
+[x="37"] {
+  --x: 37; }
+
+[sizex="37"] {
+  --sizeX: 37; }
+
+[sizey="37"] {
+  --sizeY: 37; }
+
+[life="37"] {
+  --life: 37; }
+
+[y="37"] {
+  --y: 37;
+  --sign: 0;
+  --sign: 1; }
+
+[x="38"] {
+  --x: 38; }
+
+[sizex="38"] {
+  --sizeX: 38; }
+
+[sizey="38"] {
+  --sizeY: 38; }
+
+[life="38"] {
+  --life: 38; }
+
+[y="38"] {
+  --y: 38;
+  --sign: 0;
+  --sign: 0; }
+
+[x="39"] {
+  --x: 39; }
+
+[sizex="39"] {
+  --sizeX: 39; }
+
+[sizey="39"] {
+  --sizeY: 39; }
+
+[life="39"] {
+  --life: 39; }
+
+[y="39"] {
+  --y: 39;
+  --sign: 0;
+  --sign: 1; }
+
+[x="40"] {
+  --x: 40; }
+
+[sizex="40"] {
+  --sizeX: 40; }
+
+[sizey="40"] {
+  --sizeY: 40; }
+
+[life="40"] {
+  --life: 40; }
+
+[y="40"] {
+  --y: 40;
+  --sign: 0;
+  --sign: 0; }
+
+[x="41"] {
+  --x: 41; }
+
+[sizex="41"] {
+  --sizeX: 41; }
+
+[sizey="41"] {
+  --sizeY: 41; }
+
+[life="41"] {
+  --life: 41; }
+
+[y="41"] {
+  --y: 41;
+  --sign: 0;
+  --sign: 1; }
+
+[x="42"] {
+  --x: 42; }
+
+[sizex="42"] {
+  --sizeX: 42; }
+
+[sizey="42"] {
+  --sizeY: 42; }
+
+[life="42"] {
+  --life: 42; }
+
+[y="42"] {
+  --y: 42;
+  --sign: 0;
+  --sign: 0; }
+
+[x="43"] {
+  --x: 43; }
+
+[sizex="43"] {
+  --sizeX: 43; }
+
+[sizey="43"] {
+  --sizeY: 43; }
+
+[life="43"] {
+  --life: 43; }
+
+[y="43"] {
+  --y: 43;
+  --sign: 0;
+  --sign: 1; }
+
+[x="44"] {
+  --x: 44; }
+
+[sizex="44"] {
+  --sizeX: 44; }
+
+[sizey="44"] {
+  --sizeY: 44; }
+
+[life="44"] {
+  --life: 44; }
+
+[y="44"] {
+  --y: 44;
+  --sign: 0;
+  --sign: 0; }
+
+[x="45"] {
+  --x: 45; }
+
+[sizex="45"] {
+  --sizeX: 45; }
+
+[sizey="45"] {
+  --sizeY: 45; }
+
+[life="45"] {
+  --life: 45; }
+
+[y="45"] {
+  --y: 45;
+  --sign: 0;
+  --sign: 1; }
+
+[x="46"] {
+  --x: 46; }
+
+[sizex="46"] {
+  --sizeX: 46; }
+
+[sizey="46"] {
+  --sizeY: 46; }
+
+[life="46"] {
+  --life: 46; }
+
+[y="46"] {
+  --y: 46;
+  --sign: 0;
+  --sign: 0; }
+
+[x="47"] {
+  --x: 47; }
+
+[sizex="47"] {
+  --sizeX: 47; }
+
+[sizey="47"] {
+  --sizeY: 47; }
+
+[life="47"] {
+  --life: 47; }
+
+[y="47"] {
+  --y: 47;
+  --sign: 0;
+  --sign: 1; }
+
+[x="48"] {
+  --x: 48; }
+
+[sizex="48"] {
+  --sizeX: 48; }
+
+[sizey="48"] {
+  --sizeY: 48; }
+
+[life="48"] {
+  --life: 48; }
+
+[y="48"] {
+  --y: 48;
+  --sign: 0;
+  --sign: 0; }
+
+[x="49"] {
+  --x: 49; }
+
+[sizex="49"] {
+  --sizeX: 49; }
+
+[sizey="49"] {
+  --sizeY: 49; }
+
+[life="49"] {
+  --life: 49; }
+
+[y="49"] {
+  --y: 49;
+  --sign: 0;
+  --sign: 1; }
+
+[x="50"] {
+  --x: 50; }
+
+[sizex="50"] {
+  --sizeX: 50; }
+
+[sizey="50"] {
+  --sizeY: 50; }
+
+[life="50"] {
+  --life: 50; }
+
+[y="50"] {
+  --y: 50;
+  --sign: 0;
+  --sign: 0; }
+
+[x="51"] {
+  --x: 51; }
+
+[sizex="51"] {
+  --sizeX: 51; }
+
+[sizey="51"] {
+  --sizeY: 51; }
+
+[life="51"] {
+  --life: 51; }
+
+[y="51"] {
+  --y: 51;
+  --sign: 0;
+  --sign: 1; }
+
+[x="52"] {
+  --x: 52; }
+
+[sizex="52"] {
+  --sizeX: 52; }
+
+[sizey="52"] {
+  --sizeY: 52; }
+
+[life="52"] {
+  --life: 52; }
+
+[y="52"] {
+  --y: 52;
+  --sign: 0;
+  --sign: 0; }
+
+[x="53"] {
+  --x: 53; }
+
+[sizex="53"] {
+  --sizeX: 53; }
+
+[sizey="53"] {
+  --sizeY: 53; }
+
+[life="53"] {
+  --life: 53; }
+
+[y="53"] {
+  --y: 53;
+  --sign: 0;
+  --sign: 1; }
+
+[x="54"] {
+  --x: 54; }
+
+[sizex="54"] {
+  --sizeX: 54; }
+
+[sizey="54"] {
+  --sizeY: 54; }
+
+[life="54"] {
+  --life: 54; }
+
+[y="54"] {
+  --y: 54;
+  --sign: 0;
+  --sign: 0; }
+
+[x="55"] {
+  --x: 55; }
+
+[sizex="55"] {
+  --sizeX: 55; }
+
+[sizey="55"] {
+  --sizeY: 55; }
+
+[life="55"] {
+  --life: 55; }
+
+[y="55"] {
+  --y: 55;
+  --sign: 0;
+  --sign: 1; }
+
+[x="56"] {
+  --x: 56; }
+
+[sizex="56"] {
+  --sizeX: 56; }
+
+[sizey="56"] {
+  --sizeY: 56; }
+
+[life="56"] {
+  --life: 56; }
+
+[y="56"] {
+  --y: 56;
+  --sign: 0;
+  --sign: 0; }
+
+[x="57"] {
+  --x: 57; }
+
+[sizex="57"] {
+  --sizeX: 57; }
+
+[sizey="57"] {
+  --sizeY: 57; }
+
+[life="57"] {
+  --life: 57; }
+
+[y="57"] {
+  --y: 57;
+  --sign: 0;
+  --sign: 1; }
+
+[x="58"] {
+  --x: 58; }
+
+[sizex="58"] {
+  --sizeX: 58; }
+
+[sizey="58"] {
+  --sizeY: 58; }
+
+[life="58"] {
+  --life: 58; }
+
+[y="58"] {
+  --y: 58;
+  --sign: 0;
+  --sign: 0; }
+
+[x="59"] {
+  --x: 59; }
+
+[sizex="59"] {
+  --sizeX: 59; }
+
+[sizey="59"] {
+  --sizeY: 59; }
+
+[life="59"] {
+  --life: 59; }
+
+[y="59"] {
+  --y: 59;
+  --sign: 0;
+  --sign: 1; }
+
+[x="60"] {
+  --x: 60; }
+
+[sizex="60"] {
+  --sizeX: 60; }
+
+[sizey="60"] {
+  --sizeY: 60; }
+
+[life="60"] {
+  --life: 60; }
+
+[y="60"] {
+  --y: 60;
+  --sign: 0;
+  --sign: 0; }
+
+[x="61"] {
+  --x: 61; }
+
+[sizex="61"] {
+  --sizeX: 61; }
+
+[sizey="61"] {
+  --sizeY: 61; }
+
+[life="61"] {
+  --life: 61; }
+
+[y="61"] {
+  --y: 61;
+  --sign: 0;
+  --sign: 1; }
+
+[x="62"] {
+  --x: 62; }
+
+[sizex="62"] {
+  --sizeX: 62; }
+
+[sizey="62"] {
+  --sizeY: 62; }
+
+[life="62"] {
+  --life: 62; }
+
+[y="62"] {
+  --y: 62;
+  --sign: 0;
+  --sign: 0; }
+
+[x="63"] {
+  --x: 63; }
+
+[sizex="63"] {
+  --sizeX: 63; }
+
+[sizey="63"] {
+  --sizeY: 63; }
+
+[life="63"] {
+  --life: 63; }
+
+[y="63"] {
+  --y: 63;
+  --sign: 0;
+  --sign: 1; }
+
+[x="64"] {
+  --x: 64; }
+
+[sizex="64"] {
+  --sizeX: 64; }
+
+[sizey="64"] {
+  --sizeY: 64; }
+
+[life="64"] {
+  --life: 64; }
+
+[y="64"] {
+  --y: 64;
+  --sign: 0;
+  --sign: 0; }
+
+[x="65"] {
+  --x: 65; }
+
+[sizex="65"] {
+  --sizeX: 65; }
+
+[sizey="65"] {
+  --sizeY: 65; }
+
+[life="65"] {
+  --life: 65; }
+
+[y="65"] {
+  --y: 65;
+  --sign: 0;
+  --sign: 1; }
+
+[x="66"] {
+  --x: 66; }
+
+[sizex="66"] {
+  --sizeX: 66; }
+
+[sizey="66"] {
+  --sizeY: 66; }
+
+[life="66"] {
+  --life: 66; }
+
+[y="66"] {
+  --y: 66;
+  --sign: 0;
+  --sign: 0; }
+
+[x="67"] {
+  --x: 67; }
+
+[sizex="67"] {
+  --sizeX: 67; }
+
+[sizey="67"] {
+  --sizeY: 67; }
+
+[life="67"] {
+  --life: 67; }
+
+[y="67"] {
+  --y: 67;
+  --sign: 0;
+  --sign: 1; }
+
+[x="68"] {
+  --x: 68; }
+
+[sizex="68"] {
+  --sizeX: 68; }
+
+[sizey="68"] {
+  --sizeY: 68; }
+
+[life="68"] {
+  --life: 68; }
+
+[y="68"] {
+  --y: 68;
+  --sign: 0;
+  --sign: 0; }
+
+[x="69"] {
+  --x: 69; }
+
+[sizex="69"] {
+  --sizeX: 69; }
+
+[sizey="69"] {
+  --sizeY: 69; }
+
+[life="69"] {
+  --life: 69; }
+
+[y="69"] {
+  --y: 69;
+  --sign: 0;
+  --sign: 1; }
+
+[x="70"] {
+  --x: 70; }
+
+[sizex="70"] {
+  --sizeX: 70; }
+
+[sizey="70"] {
+  --sizeY: 70; }
+
+[life="70"] {
+  --life: 70; }
+
+[y="70"] {
+  --y: 70;
+  --sign: 0;
+  --sign: 0; }
+
+[x="71"] {
+  --x: 71; }
+
+[sizex="71"] {
+  --sizeX: 71; }
+
+[sizey="71"] {
+  --sizeY: 71; }
+
+[life="71"] {
+  --life: 71; }
+
+[y="71"] {
+  --y: 71;
+  --sign: 0;
+  --sign: 1; }
+
+[x="72"] {
+  --x: 72; }
+
+[sizex="72"] {
+  --sizeX: 72; }
+
+[sizey="72"] {
+  --sizeY: 72; }
+
+[life="72"] {
+  --life: 72; }
+
+[y="72"] {
+  --y: 72;
+  --sign: 0;
+  --sign: 0; }
+
+[x="73"] {
+  --x: 73; }
+
+[sizex="73"] {
+  --sizeX: 73; }
+
+[sizey="73"] {
+  --sizeY: 73; }
+
+[life="73"] {
+  --life: 73; }
+
+[y="73"] {
+  --y: 73;
+  --sign: 0;
+  --sign: 1; }
+
+[x="74"] {
+  --x: 74; }
+
+[sizex="74"] {
+  --sizeX: 74; }
+
+[sizey="74"] {
+  --sizeY: 74; }
+
+[life="74"] {
+  --life: 74; }
+
+[y="74"] {
+  --y: 74;
+  --sign: 0;
+  --sign: 0; }
+
+[x="75"] {
+  --x: 75; }
+
+[sizex="75"] {
+  --sizeX: 75; }
+
+[sizey="75"] {
+  --sizeY: 75; }
+
+[life="75"] {
+  --life: 75; }
+
+[y="75"] {
+  --y: 75;
+  --sign: 0;
+  --sign: 1; }
+
+[x="76"] {
+  --x: 76; }
+
+[sizex="76"] {
+  --sizeX: 76; }
+
+[sizey="76"] {
+  --sizeY: 76; }
+
+[life="76"] {
+  --life: 76; }
+
+[y="76"] {
+  --y: 76;
+  --sign: 0;
+  --sign: 0; }
+
+[x="77"] {
+  --x: 77; }
+
+[sizex="77"] {
+  --sizeX: 77; }
+
+[sizey="77"] {
+  --sizeY: 77; }
+
+[life="77"] {
+  --life: 77; }
+
+[y="77"] {
+  --y: 77;
+  --sign: 0;
+  --sign: 1; }
+
+[x="78"] {
+  --x: 78; }
+
+[sizex="78"] {
+  --sizeX: 78; }
+
+[sizey="78"] {
+  --sizeY: 78; }
+
+[life="78"] {
+  --life: 78; }
+
+[y="78"] {
+  --y: 78;
+  --sign: 0;
+  --sign: 0; }
+
+[x="79"] {
+  --x: 79; }
+
+[sizex="79"] {
+  --sizeX: 79; }
+
+[sizey="79"] {
+  --sizeY: 79; }
+
+[life="79"] {
+  --life: 79; }
+
+[y="79"] {
+  --y: 79;
+  --sign: 0;
+  --sign: 1; }
+
+[x="80"] {
+  --x: 80; }
+
+[sizex="80"] {
+  --sizeX: 80; }
+
+[sizey="80"] {
+  --sizeY: 80; }
+
+[life="80"] {
+  --life: 80; }
+
+[y="80"] {
+  --y: 80;
+  --sign: 0;
+  --sign: 0; }
+
+[x="81"] {
+  --x: 81; }
+
+[sizex="81"] {
+  --sizeX: 81; }
+
+[sizey="81"] {
+  --sizeY: 81; }
+
+[life="81"] {
+  --life: 81; }
+
+[y="81"] {
+  --y: 81;
+  --sign: 0;
+  --sign: 1; }
+
+[x="82"] {
+  --x: 82; }
+
+[sizex="82"] {
+  --sizeX: 82; }
+
+[sizey="82"] {
+  --sizeY: 82; }
+
+[life="82"] {
+  --life: 82; }
+
+[y="82"] {
+  --y: 82;
+  --sign: 0;
+  --sign: 0; }
+
+[x="83"] {
+  --x: 83; }
+
+[sizex="83"] {
+  --sizeX: 83; }
+
+[sizey="83"] {
+  --sizeY: 83; }
+
+[life="83"] {
+  --life: 83; }
+
+[y="83"] {
+  --y: 83;
+  --sign: 0;
+  --sign: 1; }
+
+[x="84"] {
+  --x: 84; }
+
+[sizex="84"] {
+  --sizeX: 84; }
+
+[sizey="84"] {
+  --sizeY: 84; }
+
+[life="84"] {
+  --life: 84; }
+
+[y="84"] {
+  --y: 84;
+  --sign: 0;
+  --sign: 0; }
+
+[x="85"] {
+  --x: 85; }
+
+[sizex="85"] {
+  --sizeX: 85; }
+
+[sizey="85"] {
+  --sizeY: 85; }
+
+[life="85"] {
+  --life: 85; }
+
+[y="85"] {
+  --y: 85;
+  --sign: 0;
+  --sign: 1; }
+
+[x="86"] {
+  --x: 86; }
+
+[sizex="86"] {
+  --sizeX: 86; }
+
+[sizey="86"] {
+  --sizeY: 86; }
+
+[life="86"] {
+  --life: 86; }
+
+[y="86"] {
+  --y: 86;
+  --sign: 0;
+  --sign: 0; }
+
+[x="87"] {
+  --x: 87; }
+
+[sizex="87"] {
+  --sizeX: 87; }
+
+[sizey="87"] {
+  --sizeY: 87; }
+
+[life="87"] {
+  --life: 87; }
+
+[y="87"] {
+  --y: 87;
+  --sign: 0;
+  --sign: 1; }
+
+[x="88"] {
+  --x: 88; }
+
+[sizex="88"] {
+  --sizeX: 88; }
+
+[sizey="88"] {
+  --sizeY: 88; }
+
+[life="88"] {
+  --life: 88; }
+
+[y="88"] {
+  --y: 88;
+  --sign: 0;
+  --sign: 0; }
+
+[x="89"] {
+  --x: 89; }
+
+[sizex="89"] {
+  --sizeX: 89; }
+
+[sizey="89"] {
+  --sizeY: 89; }
+
+[life="89"] {
+  --life: 89; }
+
+[y="89"] {
+  --y: 89;
+  --sign: 0;
+  --sign: 1; }
+
+[x="90"] {
+  --x: 90; }
+
+[sizex="90"] {
+  --sizeX: 90; }
+
+[sizey="90"] {
+  --sizeY: 90; }
+
+[life="90"] {
+  --life: 90; }
+
+[y="90"] {
+  --y: 90;
+  --sign: 0;
+  --sign: 0; }
+
+[x="91"] {
+  --x: 91; }
+
+[sizex="91"] {
+  --sizeX: 91; }
+
+[sizey="91"] {
+  --sizeY: 91; }
+
+[life="91"] {
+  --life: 91; }
+
+[y="91"] {
+  --y: 91;
+  --sign: 0;
+  --sign: 1; }
+
+[x="92"] {
+  --x: 92; }
+
+[sizex="92"] {
+  --sizeX: 92; }
+
+[sizey="92"] {
+  --sizeY: 92; }
+
+[life="92"] {
+  --life: 92; }
+
+[y="92"] {
+  --y: 92;
+  --sign: 0;
+  --sign: 0; }
+
+[x="93"] {
+  --x: 93; }
+
+[sizex="93"] {
+  --sizeX: 93; }
+
+[sizey="93"] {
+  --sizeY: 93; }
+
+[life="93"] {
+  --life: 93; }
+
+[y="93"] {
+  --y: 93;
+  --sign: 0;
+  --sign: 1; }
+
+[x="94"] {
+  --x: 94; }
+
+[sizex="94"] {
+  --sizeX: 94; }
+
+[sizey="94"] {
+  --sizeY: 94; }
+
+[life="94"] {
+  --life: 94; }
+
+[y="94"] {
+  --y: 94;
+  --sign: 0;
+  --sign: 0; }
+
+[x="95"] {
+  --x: 95; }
+
+[sizex="95"] {
+  --sizeX: 95; }
+
+[sizey="95"] {
+  --sizeY: 95; }
+
+[life="95"] {
+  --life: 95; }
+
+[y="95"] {
+  --y: 95;
+  --sign: 0;
+  --sign: 1; }
+
+[x="96"] {
+  --x: 96; }
+
+[sizex="96"] {
+  --sizeX: 96; }
+
+[sizey="96"] {
+  --sizeY: 96; }
+
+[life="96"] {
+  --life: 96; }
+
+[y="96"] {
+  --y: 96;
+  --sign: 0;
+  --sign: 0; }
+
+[x="97"] {
+  --x: 97; }
+
+[sizex="97"] {
+  --sizeX: 97; }
+
+[sizey="97"] {
+  --sizeY: 97; }
+
+[life="97"] {
+  --life: 97; }
+
+[y="97"] {
+  --y: 97;
+  --sign: 0;
+  --sign: 1; }
+
+[x="98"] {
+  --x: 98; }
+
+[sizex="98"] {
+  --sizeX: 98; }
+
+[sizey="98"] {
+  --sizeY: 98; }
+
+[life="98"] {
+  --life: 98; }
+
+[y="98"] {
+  --y: 98;
+  --sign: 0;
+  --sign: 0; }
+
+[x="99"] {
+  --x: 99; }
+
+[sizex="99"] {
+  --sizeX: 99; }
+
+[sizey="99"] {
+  --sizeY: 99; }
+
+[life="99"] {
+  --life: 99; }
+
+[y="99"] {
+  --y: 99;
+  --sign: 0;
+  --sign: 1; }
+
+[x="100"] {
+  --x: 100; }
+
+[sizex="100"] {
+  --sizeX: 100; }
+
+[sizey="100"] {
+  --sizeY: 100; }
+
+[life="100"] {
+  --life: 100; }
+
+[y="100"] {
+  --y: 100;
+  --sign: 0;
+  --sign: 0; }
+
+hex-grid {
+  --sizeX: 0;
+  --sizeY: 0;
+  --gapX: 2px;
+  --gapY: 2px;
+  --padding: 100px;
+  --widthRaw: calc(var(--hexSize) * var(--sizeX) + var(--hexSize) / 2);
+  --heightRaw: calc(var(--hexSize) + var(--hexSize) * (var(--sizeY) - 1) * 3 / 4 );
+  --gapXTotal: calc((var(--sizeX) - 1) * var(--gapX) + var(--gapX) / 2);
+  --gapYTotal: calc((var(--sizeY) - 1) * var(--gapY));
+  width: calc(var(--widthRaw) + var(--gapXTotal) + var(--padding));
+  height: calc(var(--heightRaw) + var(--gapYTotal) + var(--padding));
+  background: #ded;
+  display: inline-block;
+  position: relative; }
+  hex-grid * {
+    --x: 0;
+    --y: 0;
+    --sign: 0;
+    --centeringTop: 0px;
+    --centeringLeft: 0px;
+    --topAnchorBase: calc(var(--hexSize) * var(--y) * 3 / 4);
+    --leftAnchorBaseOffset: calc((var(--hexSize) * var(--sign)) * 1/2);
+    --leftAnchorBase: calc(var(--hexSize) * var(--x) + var(--leftAnchorBaseOffset));
+    --marginX: calc(var(--gapX) * (var(--x) + 1 * var(--sign) / 2));
+    --marginY: calc(var(--gapY) * var(--y));
+    --topBase: calc(var(--topAnchorBase) + var(--marginY) + var(--padding) / 2);
+    --leftBase: calc(var(--leftAnchorBase) + var(--marginX) + var(--padding) / 2);
+    --centeringTop: calc((var(--hexSize) - var(--height)) / 2);
+    --centeringLeft: calc((var(--hexSize) - var(--width)) / 2);
+    --top: calc(var(--topBase) + var(--centeringTop, 0px));
+    --left: calc(var(--leftBase) + var(--centeringLeft, 0px));
+    top: var(--top);
+    left: var(--left);
+    position: absolute; }
+  hex-grid .drag-move {
+    --dragOffsetTop: calc(var(--pageYDragOrigin) - var(--pageYDrag));
+    --dragOffsetLeft: calc(var(--pageXDragOrigin) - var(--pageXDrag));
+    --top: calc(var(--topBase) + var(--centeringTop, 0px) - var(--dragOffsetTop));
+    --left: calc(var(--leftBase) + var(--centeringLeft, 0px) - var(--dragOffsetLeft)); }
+  hex-grid .drag-start {
+    background-color: #e0f713; }
+
+hex-tile {
+  transition: .5s;
+  width: var(--hexSize);
+  height: var(--hexSize);
+  clip-path: var(--hexagon);
+  background-color: #5f78cc; }
+  hex-tile.in-range {
+    background-color: #444558; }
+
+unit-edible {
+  --width: 30px;
+  --height: 30px;
+  top: --height;
+  width: var(--width);
+  height: var(--height);
+  border-radius: 100%;
+  z-index: 10;
+  background-color: #b9c7ec; }
+  unit-edible[life="-1"] {
+    background-color: #96b37b; }
+
+unit-player {
+  --widthBase: 10px;
+  --heightBase: 10px;
+  --lifeGrow: 2px;
+  --width: calc(var(--widthBase) + var(--lifeGrow) * var(--life));
+  --height: calc(var(--heightBase) + var(--lifeGrow) * var(--life));
+  width: var(--width);
+  height: var(--height);
+  border-radius: 100%;
+  z-index: 10;
+  background-color: #f0e87c; }
+
