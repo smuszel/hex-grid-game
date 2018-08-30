@@ -1,0 +1,66 @@
+hex-grid {
+    --sizeX: 0;
+    --sizeY: 0;
+
+    --gapX: 2px;
+    --gapY: 2px;
+
+    --padding: 100px;
+
+    --widthRaw: calc(var(--hexSize) * var(--sizeX) + var(--hexSize) / 2);
+    --heightRaw: calc(var(--hexSize) + var(--hexSize) * (var(--sizeY) - 1) * 3 / 4 );
+    
+    --gapXTotal: calc((var(--sizeX) - 1) * var(--gapX) + var(--gapX) / 2);
+    --gapYTotal: calc((var(--sizeY) - 1) * var(--gapY));
+
+    width: calc(var(--widthRaw) + var(--gapXTotal) + var(--padding));
+    height: calc(var(--heightRaw) + var(--gapYTotal) + var(--padding));
+    background: #ded;
+
+    display: inline-block;
+    position: relative;
+
+    * {
+        --x: 0;
+        --y: 0;
+        --sign: 0;
+        --centeringTop: 0px;
+        --centeringLeft: 0px;
+        
+        --topAnchorBase: calc(var(--hexSize) * var(--y) * 3 / 4);
+        --leftAnchorBaseOffset: calc((var(--hexSize) * var(--sign)) * 1/2);
+        --leftAnchorBase: calc(var(--hexSize) * var(--x) + var(--leftAnchorBaseOffset));
+    
+        --marginX: calc(var(--gapX) * (var(--x) + 1 * var(--sign) / 2));
+        --marginY: calc(var(--gapY) * var(--y));
+    
+        --topBase: calc(var(--topAnchorBase) + var(--marginY) + var(--padding) / 2);
+        --leftBase: calc(var(--leftAnchorBase) + var(--marginX) + var(--padding) / 2);
+
+        --centeringTop: calc((var(--hexSize) - var(--height)) / 2);
+        --centeringLeft: calc((var(--hexSize) - var(--width)) / 2);
+
+        --top: calc(var(--topBase) + var(--centeringTop, 0px));
+        --left: calc(var(--leftBase) + var(--centeringLeft, 0px));
+    
+        top: var(--top);
+        left: var(--left);
+        position: absolute;
+    }
+
+    .drag {
+        &-move {
+            // --top: calc(var(--pageYDrag) - var(--centeringTop));
+            // --left: calc(var(--pageXDrag) - var(--centeringLeft));
+            --dragOffsetTop: calc(var(--pageYDragOrigin) - var(--pageYDrag));
+            --dragOffsetLeft: calc(var(--pageXDragOrigin) - var(--pageXDrag));
+
+            --top: calc(var(--topBase) + var(--centeringTop, 0px) - var(--dragOffsetTop));
+            --left: calc(var(--leftBase) + var(--centeringLeft, 0px) - var(--dragOffsetLeft));
+        }
+
+        &-start {
+            background-color: rgb(224, 247, 19);
+        }
+    }
+}

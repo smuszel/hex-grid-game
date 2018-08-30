@@ -1,0 +1,16 @@
+unit-edible {
+    --width: 30px;
+    --height: 30px;
+
+    &[life="-1"] {
+        background-color: rgb(150, 179, 123);
+    }
+    
+    top: --height;
+    
+    width: var(--width);
+    height: var(--height);
+    border-radius: 100%;
+    z-index: 10;
+    background-color: rgb(185, 199, 236);
+}

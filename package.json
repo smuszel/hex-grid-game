@@ -1,0 +1,24 @@
+{
+    "name": "hex",
+    "version": "1.0.0",
+    "description": "",
+    "devDependencies": {
+        "clean-webpack-plugin": "^0.1.19",
+        "css-loader": "^1.0.0",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.4.2",
+        "node-sass": "^4.9.3",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^0.22.1",
+        "ts-loader": "^4.5.0",
+        "typescript": "^3.0.1",
+        "url-loader": "^1.1.1",
+        "webpack": "^4.17.1",
+        "webpack-cli": "^3.1.0",
+        "webpack-md5-hash": "0.0.6"
+    },
+    "dependencies": {},
+    "scripts": {
+        "start": "npx webpack -w"
+    }
+}
