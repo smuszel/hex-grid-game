@@ -1,7 +1,7 @@
 unit-player {
-    --widthBase: 30px;
-    --heightBase: 30px;
-    --lifeGrow: 5px;
+    --widthBase: 10px;
+    --heightBase: 10px;
+    --lifeGrow: 2px;
 
     --width: calc(var(--widthBase) + var(--lifeGrow) * var(--life));
     --height: calc(var(--heightBase) + var(--lifeGrow) * var(--life));
@@ -10,5 +10,5 @@ unit-player {
     height: var(--height);
     border-radius: 100%;
     z-index: 10;
-    background-color: rgb(214, 166, 103);
+    background-color: rgb(240, 232, 124);
 }

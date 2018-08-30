@@ -1,8 +1,9 @@
 hex-tile {
+    transition: .5s;
     width: var(--hexSize);
     height: var(--hexSize);
     clip-path: var(--hexagon);
-    background-color: rgb(45, 124, 189);
+    background-color: rgb(95, 120, 204);
 
     &.in-range {
         background-color: rgb(68, 69, 88);

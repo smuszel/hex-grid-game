@@ -19,6 +19,10 @@ export default class UnitEdible extends HTMLElement {
         }
     }
 
+    spoil() {
+        this.setAttribute('life', '-1');
+    }
+
     @eventHandler('dragstart')
     dontFollowHorribleHTML5Spec(ev) {
         ev.preventDefault();

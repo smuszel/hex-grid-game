@@ -8,6 +8,7 @@ import { HTMLElementPlus } from '../meta/HTMLElementPlus';
 import { locate } from '../tools/locate';
 import { move } from '../tools/move';
 import UnitEdible from './unit-edible';
+import UnitPlayer from './unit-player';
 
 export default class HexGrid extends HTMLElementPlus {
 
@@ -100,7 +101,7 @@ export default class HexGrid extends HTMLElementPlus {
         const coordinates = this.pointerPositionToCoords(ev.clientX, ev.clientY);
         const el = this.queryIndex(coordinates);
 
-        if (el) {
+        if (el instanceof UnitPlayer) {
             el.style.setProperty('--pageXDragOrigin', `${ev.pageX}px`);
             el.style.setProperty('--pageYDragOrigin', `${ev.pageY}px`);
     
@@ -135,7 +136,6 @@ export default class HexGrid extends HTMLElementPlus {
             return [null, null] as OffsetCoordinates;
         }
     }
-
 
     get draggedItem() {
         const el = this.querySelector('.drag');

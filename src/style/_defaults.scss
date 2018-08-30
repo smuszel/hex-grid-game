@@ -2,9 +2,10 @@ body {
     --hexSize: 80px;
     --hexagon: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     transition: 0.2s;
+    margin: 0;
 }
 
-@for $i from 0 through 20 {
+@for $i from 0 through 100 {
     [x="#{$i}"] { --x: #{$i}; }
     [sizex="#{$i}"] { --sizeX: #{$i}; }
     [sizey="#{$i}"] { --sizeY: #{$i}; }
