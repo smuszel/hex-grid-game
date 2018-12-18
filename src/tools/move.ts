@@ -8,6 +8,6 @@ export const move = (el: HTMLElement, [x, y]: OffsetCoordinates) => {
     }
         
     if (currentY !== y) {
-            el.setAttribute('y', `${y}`);
+        el.setAttribute('y', `${y}`);
     }
 }

@@ -2,8 +2,6 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const WebpackMd5Hash = require('webpack-md5-hash');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const pathTo = {
     dist: path.join(__dirname, 'dist'),
@@ -42,9 +40,6 @@ module.exports = {
     },
 
     plugins: [
-        new CleanWebpackPlugin('dist', {
-            exclude: ['favicon.ico']
-        }),
         new MiniCssExtractPlugin({
             filename: 'style.[hash].css',
         }),
@@ -54,7 +49,6 @@ module.exports = {
             template: './src/index.html',
             filename: 'index.html'
         }),
-        new WebpackMd5Hash()
     ],
 
     mode: 'development',
