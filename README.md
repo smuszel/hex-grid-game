@@ -1,5 +1,3 @@
-### [Demo](https://smuszel.github.io/hex-grid-game/)
-
 ### Motivation
 
 * Learn HTML 5 Web Component Spec
