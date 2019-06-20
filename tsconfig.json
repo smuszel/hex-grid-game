@@ -1,15 +1,14 @@
 {
-    "compileOnSave": true,
     "compilerOptions": {
         "moduleResolution": "node",
         "baseUrl": "./src",
-        "target": "es2018",
+        "target": "es6",
+        "lib": ["dom", "esnext"],
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
-        "lib": ["es2018", "dom", "es6", "esnext"],
         "sourceMap": false,
         "pretty": true,
-        "outDir": "./dist",
+        "outDir": "./dist"
     },
     "include": ["./src/**/*"]
 }
